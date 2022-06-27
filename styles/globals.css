@@ -1,0 +1,95 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mainNav{
+  display: flex;
+  justify-content: left;
+  background: #11377c;
+  font-size: 21px;
+  color: white;
+}
+
+.maindiv{
+  display: flex;
+    justify-content: center;
+    font-style: oblique;
+}
+
+.list-data{
+  text-decoration: none;
+  list-style: none;
+  margin-left: 15px;
+}
+.list-data:hover{
+  cursor: pointer;
+  background-color: #11377c;
+  color: rgb(34, 202, 12);
+}
+
+.tableData{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding-left: 315px;
+}
+
+.theadData{  
+    padding: 25px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: rosybrown;
+  height: 58px;
+
+
+}
+
+.trowData{
+  align-items: center;
+  text-align: center;
+
+}
+
+.th{
+  width: 223px;
+}
+
+.td{
+  height: 85px;
+  font-style: bold;
+  font-size: 15px;
+}
+
+.container{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+#name{
+  padding: 16px;
+  width: 618px;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 16px;
+}
+
+.quils{
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
