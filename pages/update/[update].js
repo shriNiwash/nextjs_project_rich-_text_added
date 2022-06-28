@@ -1,6 +1,7 @@
+import React,{ useState, useEffect } from "react";
+import {useRouter}  from "next/router";
 import Navbar from "../Components/Navbar";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+
 
 export const getServerSideProps = (context) => {
   const id = context.query;
@@ -12,16 +13,16 @@ export const getServerSideProps = (context) => {
     },
   };
 };
-const update = ({ data }) => {
+
+const Update = ({ data }) => {
+  const Router = useRouter();
   console.log(data);
   const [Books, setBooks] = useState({
     name: "",
     sold: "",
   });
-  const Router = useRouter();
+ 
   const id = data;
-
-
 
   useEffect(() => {
     IsData();
@@ -102,4 +103,4 @@ const update = ({ data }) => {
   );
 };
 
-export default update;
+export default Update;
