@@ -1,31 +1,33 @@
 import Navbar from "../Components/Navbar";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-export const getServerSideProps = (context)=>{
-    const id = context.query;
-    const data = id.update;
-    console.log(data);
+export const getServerSideProps = (context) => {
+  const id = context.query;
+  const data = id.update;
 
-    return{
-        props:{
-            data
-        }
-    }
-}
-const update = ({data}) => {
-    const router = useRouter();
-    const id  =data;
+  return {
+    props: {
+      data,
+    },
+  };
+};
+const update = ({ data }) => {
+  console.log(data);
   const [Books, setBooks] = useState({
     name: "",
     sold: "",
   });
+  const router = useRouter();
+  const id = data;
+
+
 
   useEffect(() => {
-    isData();
+    IsData();
   }, [id]);
 
-  async function isData() {
+  async function IsData() {
     const response = await fetch(
       `https://apinextjs.herokuapp.com/getData/${id}`
     );
@@ -42,7 +44,8 @@ const update = ({data}) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://my-web-crud.herokuapp.com/update/${id}`, {
+    console.log(id);
+    fetch(`https://apinextjs.herokuapp.com/update/${id}`, {
       method: "PUT",
       body: JSON.stringify(Books),
       headers: {
