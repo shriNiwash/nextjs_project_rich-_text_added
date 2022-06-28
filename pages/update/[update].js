@@ -18,7 +18,7 @@ const update = ({ data }) => {
     name: "",
     sold: "",
   });
-  const router = useRouter();
+  const Router = useRouter();
   const id = data;
 
 
@@ -55,7 +55,7 @@ const update = ({ data }) => {
       .then((response) => response.json())
       .then((daa) => {
         console.log(daa);
-        router.push("/list");
+        Router.push("/list");
       })
       .catch((err) => console.log(err));
   };
