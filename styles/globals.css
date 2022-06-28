@@ -72,6 +72,10 @@ a {
   height: 85px;
   font-style: bold;
   font-size: 15px;
+  cursor: pointer;
+}
+.td:hover{
+  columns: blue;
 }
 
 .container{
@@ -92,4 +96,13 @@ a {
   display: flex;
   justify-content: center;
   margin-top: 14px;
+}
+
+#cards{
+  width: 30rem;
+}
+
+.mainCard{
+  display: flex;
+  justify-content: center;
 }

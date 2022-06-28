@@ -39,10 +39,8 @@ const List = ({ data }) => {
       <table className="tableData" border="2px">
         <thead className="theadData">
           <tr className="trowData">
-            <th className="th">Id</th>
             <th className="th">Name</th>
             <th className="th">Sold</th>
-            <th className="th">description</th>
             <th className="th">Operation</th>
           </tr>
         </thead>
@@ -50,10 +48,8 @@ const List = ({ data }) => {
           {data.map((list) => {
             return (
               <tr key={list._id}>
-                <td className="td">{list._id}</td>
-                <td className="td">{list.name}</td>
+                <Link href={`/details/${list._id}`}><td className="td">{list.name}</td></Link>
                 <td className="td">{list.sold}</td>
-                <td className="td">{list.description}</td>
                 <td className="td">
                   <Link href={`/update/${list._id}`}>
                     <a>Update</a>
