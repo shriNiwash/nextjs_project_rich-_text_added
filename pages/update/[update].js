@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../Components/Navbar";
 import dynamic from "next/dynamic";
-// import Quill from "../Components/quill";
-// import ReactQuill from 'react-quill';
-import "react-quill/dist/quill.snow.css";
-
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+// const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
+
+import "react-quill/dist/quill.snow.css";
 
 export const getServerSideProps = (context) => {
   const id = context.query;
@@ -62,8 +61,25 @@ const Update = ({ data }) => {
   //   setDocs(Books);
   // },[id])
 
+  // function shri(){
+  //   if(typeof window !== 'undefined' && ReactQuill)
+  //   {
+  //     return(
+  //       <ReactQuill
+  //       name="description"
+  //       theme="snow"
+  //       value={Description}
+  //       onChange={data=>setDescription(data)}
+  //     />
+
+  //     )
+
+  //   }
+  //   else false;
+  // }
+
   const onSubmit = (e) => {
-    const {name,sold} = Books;
+    const { name, sold } = Books;
     console.log(name);
     e.preventDefault();
     console.log(id);
@@ -72,8 +88,7 @@ const Update = ({ data }) => {
       body: JSON.stringify({
         name,
         sold,
-        description:Description
-
+        description: Description,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -118,12 +133,24 @@ const Update = ({ data }) => {
           <br />
           <br />
           <div className="quilName">
-            <ReactQuill
+          {if(typeof document !== 'undefined')
+          {
+         return( <ReactQuill
+        name="description"
+        theme="snow"
+        value={Description}
+        onChange={data=>setDescription(data)}
+      />)
+          }
+          else return false;
+          }
+        
+            {/* <ReactQuill
               name="description"
               theme="snow"
               value={Description}
               onChange={data=>setDescription(data)}
-            />
+            /> */}
           </div>
           <br />
           <br />
