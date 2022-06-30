@@ -6,6 +6,7 @@ const Quill = ({setData}) => {
   const { quill, quillRef } = useQuill();
   React.useEffect(() => {
     if (quill) {
+      
       quill.on('text-change', () => {
         setData(quillRef.current.firstChild.innerHTML)
       });
@@ -15,7 +16,7 @@ const Quill = ({setData}) => {
 
   return (
     <>
-      <div style={{ width: 500, height: 100 }}>
+      <div style={{ width: 608, height: 100 }}>
         <div ref={quillRef} />
       </div>
     </>

@@ -2,6 +2,7 @@ import Navbar from "../Components/Navbar";
 import Head from "next/head";
 import Image from "next/image";
 
+
 export const getServerSideProps = async (context) => {
   const id = context.query;
   const ids = id.details;

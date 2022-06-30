@@ -1,7 +1,12 @@
-import React,{ useState, useEffect } from "react";
-import {useRouter}  from "next/router";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../Components/Navbar";
+import dynamic from "next/dynamic";
+// import Quill from "../Components/quill";
+// import ReactQuill from 'react-quill';
+import "react-quill/dist/quill.snow.css";
 
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const getServerSideProps = (context) => {
   const id = context.query;
@@ -17,11 +22,14 @@ export const getServerSideProps = (context) => {
 const Update = ({ data }) => {
   const Router = useRouter();
   console.log(data);
+  // console.log("hello"+Docs.description);
+  const [Description, setDescription] = useState("");
+
   const [Books, setBooks] = useState({
     name: "",
     sold: "",
   });
- 
+
   const id = data;
 
   useEffect(() => {
@@ -33,8 +41,16 @@ const Update = ({ data }) => {
       `https://apinextjs.herokuapp.com/getData/${id}`
     );
     const data = await response.json();
-    setBooks(data);
+    const { name, sold, description } = data;
+    console.log("hello" + name);
+    setBooks({ name, sold });
+    setDescription(description);
+    console.log(description);
   }
+  // function setQuil(content) {
+  //   console.log(content);
+  //   setDescription({...Description,content});
+  // }
 
   function onTextField(e) {
     setBooks({
@@ -42,13 +58,23 @@ const Update = ({ data }) => {
       [e.target.name]: e.target.value,
     });
   }
+  // useEffect(()=>{
+  //   setDocs(Books);
+  // },[id])
 
   const onSubmit = (e) => {
+    const {name,sold} = Books;
+    console.log(name);
     e.preventDefault();
     console.log(id);
     fetch(`https://apinextjs.herokuapp.com/update/${id}`, {
       method: "PUT",
-      body: JSON.stringify(Books),
+      body: JSON.stringify({
+        name,
+        sold,
+        description:Description
+
+      }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -89,6 +115,20 @@ const Update = ({ data }) => {
             id="name"
             placeholder="sold"
           />
+          <br />
+          <br />
+          <div className="quilName">
+            <ReactQuill
+              name="description"
+              theme="snow"
+              value={Description}
+              onChange={data=>setDescription(data)}
+            />
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
 
           <input
